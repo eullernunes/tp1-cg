@@ -5,6 +5,9 @@ on:
     branches: [master, main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -40,3 +43,20 @@ jobs:
         with:
           name: TP1AlgoritmosCG-installer
           path: build/installer_output/*.exe
+
+      - name: Zip the executable folder for public release download
+        working-directory: build/dist
+        run: Compress-Archive -Path TP1AlgoritmosCG -DestinationPath TP1AlgoritmosCG.zip
+
+      - name: Publish a public download release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-latest
+          name: Build mais recente (gerado automaticamente)
+          body: Executavel e instalador Windows gerados automaticamente a partir do ultimo push. Sem necessidade de login no GitHub para baixar.
+          make_latest: true
+          files: |
+            build/dist/TP1AlgoritmosCG.zip
+            build/installer_output/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
