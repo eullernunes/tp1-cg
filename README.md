@@ -9,14 +9,8 @@ lateral.
 ## Rodar a partir do codigo-fonte
 
 ```bash
-pip install -r requirements-dev.txt
+pip install -r requirements.txt
 python -m src.app
-```
-
-## Rodar os testes
-
-```bash
-pytest -v
 ```
 
 ## Gerar o executavel e o instalador Windows
@@ -24,7 +18,7 @@ pytest -v
 A forma recomendada e via GitHub Actions (roda em uma maquina Windows real
 na nuvem, sem precisar de Windows local):
 
-1. Configure um remote no GitHub e faca push da branch `master`.
+1. Configure um remote no GitHub e faca push da branch `main`.
 2. Abra a aba "Actions" do repositorio e aguarde o workflow
    `build-windows` terminar.
 3. Baixe os artefatos `TP1AlgoritmosCG-executable` (o `.exe` e as DLLs) e
