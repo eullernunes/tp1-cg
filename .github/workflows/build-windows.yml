@@ -1,0 +1,42 @@
+name: build-windows
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build executable
+        working-directory: build
+        run: pyinstaller --noconfirm tp1_algoritmos.spec
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Build installer
+        working-directory: build
+        run: iscc installer.iss
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TP1AlgoritmosCG-executable
+          path: build/dist/TP1AlgoritmosCG/**
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TP1AlgoritmosCG-installer
+          path: build/installer_output/*.exe

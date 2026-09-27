@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+build/dist/
+build/dist_linux_smoke_test/
+build/work/
+build/installer_output/
+*.spec.bak
+.pytest_cache/
