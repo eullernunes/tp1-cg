@@ -6,6 +6,10 @@ preenchimento (Boundary-Fill, Flood-Fill, conectividade 4 e 8). Entrada
 apenas por mouse/toque na area de desenho e na barra de ferramentas
 lateral.
 
+## Video demonstrativo
+
+https://youtu.be/vObzQdPJJPQ
+
 ## Rodar a partir do codigo-fonte
 
 ```bash
